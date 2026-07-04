@@ -1,0 +1,702 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CortexFlow — Premium Web, App & AI Systems Agency</title>
+    <meta name="description" content="We engineer premium custom web systems, high-performance mobile applications, and intelligent AI pipelines to automate your business workflows.">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="grid-bg light-mode">
+
+    <!-- ============ BOOT SEQUENCE (signature intro) ============ -->
+    <div id="boot-overlay">
+        <div class="boot-box">
+            <p class="boot-line">&gt; booting cortexflow_core.sys<span class="ok"> [OK]</span></p>
+            <p class="boot-line">&gt; mounting workflow_engine.bin<span class="ok"> [OK]</span></p>
+            <p class="boot-line">&gt; establishing tls_1.3 handshake<span class="ok"> [OK]</span></p>
+            <p class="boot-line">&gt; loading gemini_agents.api<span class="ok"> [OK]</span></p>
+            <p class="boot-line">&gt; rendering interface layer<span class="ok"> [OK]</span></p>
+            <p class="boot-line">&gt; welcome to cortexflow.ai_</p>
+            <div class="boot-track"><div id="boot-fill" class="boot-fill"></div></div>
+            <div class="boot-pct" id="boot-pct">0%</div>
+        </div>
+    </div>
+
+    <div id="scroll-progress"></div>
+    <div id="cursor-spotlight"></div>
+    <div id="grain-overlay"></div>
+
+    <canvas id="neural-canvas"></canvas>
+    <div class="orb orb-acid"></div>
+    <div class="orb orb-violet"></div>
+
+    <div class="page-shell">
+
+        <!-- ============ HEADER ============ -->
+        <header class="site-header">
+            <div style="display:flex;align-items:center;gap:0.75rem;">
+                <div class="logo-container">
+                    <svg class="cortex-logo" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:100%;">
+                        <defs>
+                            <linearGradient id="grad-teal" x1="0%" y1="0%" x2="100%" y2="100%">
+                                <stop offset="0%" stop-color="var(--c-secondary)" />
+                                <stop offset="100%" stop-color="#06b6d4" />
+                            </linearGradient>
+                            <linearGradient id="grad-purple" x1="0%" y1="0%" x2="100%" y2="100%">
+                                <stop offset="0%" stop-color="var(--c-primary)" />
+                                <stop offset="100%" stop-color="#7c3aed" />
+                            </linearGradient>
+                            <filter id="glow" x="-20%" y="-20%" width="140%" height="140%">
+                                <feGaussianBlur stdDeviation="2" result="blur" />
+                                <feComposite in="SourceGraphic" in2="blur" operator="over" />
+                            </filter>
+                        </defs>
+                        <!-- Left Loop (AI node) -->
+                        <path d="M35 50 C35 38, 48 30, 50 50 C52 70, 65 62, 65 50 C65 38, 52 30, 50 50 C48 70, 35 62, 35 50 Z" stroke="url(#grad-purple)" stroke-width="6" stroke-linecap="round" filter="url(#glow)"/>
+                        <!-- Right Loop (Flow path) -->
+                        <path d="M65 50 C65 62, 52 70, 50 50 C48 30, 35 38, 35 50 C35 62, 48 70, 50 50 C52 30, 65 38, 65 50 Z" stroke="url(#grad-teal)" stroke-width="4" stroke-linecap="round"/>
+                        <!-- Inner central core -->
+                        <circle cx="50" cy="50" r="5" fill="#ffffff" />
+                    </svg>
+                </div>
+                <div>
+                    <span class="brand-name" onclick="scrollToSection('home')">CortexFlow<span style="color:var(--c-secondary)">.AI</span></span>
+                    <span class="brand-tag">// Systems & Workflows v2.0</span>
+                </div>
+            </div>
+
+            <nav class="desktop-nav">
+                <button onclick="scrollToSection('home')" id="nav-home" class="nav-btn active"><i class="fa-solid fa-laptop-code"></i> Home</button>
+                <button onclick="scrollToSection('process')" id="nav-process" class="nav-btn"><i class="fa-solid fa-network-wired"></i> Process</button>
+                <button onclick="scrollToSection('services')" id="nav-services" class="nav-btn"><i class="fa-solid fa-cubes"></i> Services</button>
+                <button onclick="scrollToSection('portfolio')" id="nav-portfolio" class="nav-btn"><i class="fa-solid fa-code-fork"></i> Projects</button>
+                <button onclick="scrollToSection('team')" id="nav-team" class="nav-btn"><i class="fa-solid fa-users-gear"></i> Team</button>
+                <button onclick="scrollToSection('contact')" id="nav-contact" class="nav-btn"><i class="fa-solid fa-paper-plane"></i> Contact</button>
+            </nav>
+
+            <div style="display:flex;align-items:center;gap:0.75rem;">
+                <button onclick="toggleTheme()" class="theme-toggle-btn" aria-label="Toggle Theme">
+                    <i class="fa-solid fa-moon icon-dark"></i>
+                    <i class="fa-solid fa-sun icon-light" style="display:none;"></i>
+                </button>
+                <button onclick="scrollToSection('contact')" class="btn-cta header-cta">CONNECT WITH US</button>
+                <button onclick="toggleMobileMenu()" class="hamburger"><i class="fa-solid fa-bars"></i></button>
+            </div>
+        </header>
+
+        <!-- ============ MOBILE MENU ============ -->
+        <div id="mobile-menu" class="mobile-menu">
+            <div class="mobile-menu-header">
+                <div style="display:flex;align-items:center;gap:0.5rem;">
+                    <div class="logo-container" style="width: 32px; height: 32px;">
+                        <svg class="cortex-logo" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:100%;">
+                            <path d="M35 50 C35 38, 48 30, 50 50 C52 70, 65 62, 65 50 C65 38, 52 30, 50 50 C48 70, 35 62, 35 50 Z" stroke="url(#grad-purple)" stroke-width="6" stroke-linecap="round" filter="url(#glow)"/>
+                            <path d="M65 50 C65 62, 52 70, 50 50 C48 30, 35 38, 35 50 C35 62, 48 70, 50 50 C52 30, 65 38, 65 50 Z" stroke="url(#grad-teal)" stroke-width="4" stroke-linecap="round"/>
+                            <circle cx="50" cy="50" r="5" fill="#ffffff" />
+                        </svg>
+                    </div>
+                    <span class="brand-name" style="font-size: 1.15rem;">CortexFlow</span>
+                </div>
+                <button onclick="toggleMobileMenu()" class="mobile-menu-close"><i class="fa-solid fa-xmark"></i></button>
+            </div>
+
+            <nav class="mobile-menu-nav">
+                <button onclick="scrollToSection('home'); toggleMobileMenu()" class="mobile-link">
+                    <span class="mobile-link-num">01</span>
+                    <span class="mobile-link-text">// HOME</span>
+                </button>
+                <button onclick="scrollToSection('process'); toggleMobileMenu()" class="mobile-link">
+                    <span class="mobile-link-num">02</span>
+                    <span class="mobile-link-text">// PROCESS</span>
+                </button>
+                <button onclick="scrollToSection('services'); toggleMobileMenu()" class="mobile-link">
+                    <span class="mobile-link-num">03</span>
+                    <span class="mobile-link-text">// SERVICES</span>
+                </button>
+                <button onclick="scrollToSection('portfolio'); toggleMobileMenu()" class="mobile-link">
+                    <span class="mobile-link-num">04</span>
+                    <span class="mobile-link-text">// PROJECTS</span>
+                </button>
+                <button onclick="scrollToSection('team'); toggleMobileMenu()" class="mobile-link">
+                    <span class="mobile-link-num">05</span>
+                    <span class="mobile-link-text">// TEAM</span>
+                </button>
+                <button onclick="scrollToSection('contact'); toggleMobileMenu()" class="mobile-link">
+                    <span class="mobile-link-num">06</span>
+                    <span class="mobile-link-text">// CONTACT</span>
+                </button>
+            </nav>
+
+            <div class="mobile-menu-footer">
+                <div class="mobile-system-status">
+                    <span class="status-live-dot"></span>
+                    <span>NODE: ACTIVE // STATUS: ONLINE</span>
+                </div>
+                <div class="mobile-footer-actions">
+                    <button onclick="toggleTheme()" class="mobile-theme-btn" aria-label="Toggle Theme">
+                        <i class="fa-solid fa-moon icon-dark"></i>
+                        <i class="fa-solid fa-sun icon-light" style="display:none;"></i>
+                        <span>Swap Theme</span>
+                    </button>
+                    <button onclick="scrollToSection('contact'); toggleMobileMenu()" class="btn-cta" style="width:100%; text-align:center;">CONNECT NOW &rarr;</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- ============ MARQUEE ============ -->
+        <div class="marquee-band">
+            <div class="marquee-track">
+                <span>⚡ CORTEXFLOW • PREMIUM WEB DEVELOPMENT • CROSS-PLATFORM MOBILE APPS • AI WORKFLOW INTELLIGENCE • ORGANIZATIONAL AUTOMATION • SECURE ENTERPRISE INTEGRATIONS • CORTEXFLOW • PREMIUM WEB DEVELOPMENT • CROSS-PLATFORM MOBILE APPS • AI WORKFLOW INTELLIGENCE • ORGANIZATIONAL AUTOMATION • SECURE ENTERPRISE INTEGRATIONS ⚡</span>
+            </div>
+        </div>
+
+        <main class="viewport-zone wrap">
+
+            <!-- ============ HERO ============ -->
+            <section id="home" class="hero scroll-offset">
+                <div class="reveal visible">
+                    <div class="eyebrow eyebrow-violet"><i class="fa-solid fa-compass" style="color:var(--c-secondary)"></i> Systems Architecture & Design</div>
+
+                    <h1 class="hero-heading">
+                        WE BUILD <span class="hero-gradient-text">INTELLIGENT SYSTEMS</span><br>
+                        TO SCALE REAL BUSINESSES.
+                    </h1>
+
+                    <ul class="hero-bullets">
+                        <li><i class="fa-solid fa-check"></i> Custom database & web infrastructures built for service businesses, gyms, clinics, and professional hubs</li>
+                        <li><i class="fa-solid fa-check"></i> High-performance mobile applications compiled for iOS & Android native deployment</li>
+                        <li><i class="fa-solid fa-check"></i> Autonomous AI automation pipelines that manage organization workflows and remove manual busywork</li>
+                        <li><i class="fa-solid fa-check"></i> Direct communication with our engineering squad — no middle managers, no corporate delays</li>
+                    </ul>
+
+                    <div class="hero-actions">
+                        <button onclick="scrollToSection('contact')" class="btn-primary">LAUNCH SYSTEM INTAKE <i class="fa-solid fa-arrow-right-long"></i></button>
+                        <button onclick="scrollToSection('portfolio')" class="btn-outline">Explore Real Deployments <i class="fa-solid fa-circle-arrow-down" style="color:var(--c-secondary)"></i></button>
+                    </div>
+
+                    <div class="tech-badges">
+                        <span class="tech-badge">DJANGO & NODE Native</span>
+                        <span class="tech-badge">PostgreSQL & Redis Systems</span>
+                        <span class="tech-badge">Gemini & OpenAI API Pipelines</span>
+                        <span class="tech-badge">React & React Native Core</span>
+                    </div>
+                </div>
+
+                <!-- Interactive terminal -->
+                <div class="reveal-scale visible">
+                    <div class="terminal">
+                        <div class="terminal-bar">
+                            <div class="terminal-dots">
+                                <span style="background:var(--c-primary)"></span>
+                                <span style="background:var(--c-secondary)"></span>
+                                <span style="background:var(--c-accent)"></span>
+                            </div>
+                            <span style="font-size:10px;color:var(--text-muted);font-family:'JetBrains Mono',monospace;">cortexflow-sandbox@user_terminal ~ bash</span>
+                        </div>
+                        <div id="terminal-screen" class="terminal-screen">
+                            <p style="color:var(--text-muted)">// Connecting to CortexFlow Core...</p>
+                            <p style="color:var(--c-secondary)"><i class="fa-solid fa-circle-check"></i> Session connection secured over TLS_1.3</p>
+                            <p style="color:var(--text-primary)"><span style="color:var(--c-accent)">$</span> run cortexflow-pitch --all</p>
+
+                            <div class="panel" style="padding:0.75rem;color:var(--text-secondary);position:relative;background:var(--bg-secondary);">
+                                <span style="color:var(--c-secondary);font-weight:700;">🎯 Agency objective:</span> replace operational complexity with custom-built databases, apps, and automated workflows. We tailor modern digital systems to optimize your business operations.
+                            </div>
+
+                            <p style="color:var(--text-muted)">Available commands:
+                                <span style="color:var(--text-primary);font-weight:700;cursor:pointer;" onclick="clickTerminalCommand('help')">'help'</span>,
+                                <span style="color:var(--text-primary);font-weight:700;cursor:pointer;" onclick="clickTerminalCommand('team')">'team'</span>,
+                                <span style="color:var(--text-primary);font-weight:700;cursor:pointer;" onclick="clickTerminalCommand('metrics')">'metrics'</span>
+                            </p>
+
+                            <div class="terminal-input-row">
+                                <span style="color:var(--c-accent);font-weight:700;">$</span>
+                                <input id="terminal-input" type="text" placeholder="type command here..." onkeydown="handleTerminal(event)">
+                            </div>
+                            <div id="terminal-feedback" style="color:var(--c-primary);font-weight:700;padding-top:0.25rem;"></div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- ============ LIVE SYSTEM STATUS DASHBOARD ============ -->
+            <div class="panel brutal status-dashboard reveal">
+                <div class="status-dashboard-head">
+                    <span><span class="status-live-dot"></span>CORTEXFLOW_CORE // LIVE SYSTEM STATUS</span>
+                    <span>UPTIME: 99.99%</span>
+                </div>
+                <div class="status-grid">
+                    <div class="status-cell">
+                        <div class="status-value-row">
+                            <span class="metric-value" data-count="15" data-suffix="+" style="font-size:2rem;color:var(--c-secondary);">0</span>
+                        </div>
+                        <div class="metric-label" style="text-align:left;margin-top:0.4rem;">Projects Delivered</div>
+                        <div class="status-meter"><div class="status-meter-fill" data-value="85" style="background:var(--c-secondary)"></div></div>
+                    </div>
+                    <div class="status-cell">
+                        <div class="status-value-row">
+                            <span class="metric-value" data-count="100" data-suffix="%" style="font-size:2rem;color:var(--c-accent);">0</span>
+                        </div>
+                        <div class="metric-label" style="text-align:left;margin-top:0.4rem;">Custom Stack Native</div>
+                        <div class="status-meter"><div class="status-meter-fill" data-value="100" style="background:var(--c-accent)"></div></div>
+                    </div>
+                    <div class="status-cell">
+                        <div class="status-value-row">
+                            <span class="metric-value" data-count="4" data-suffix="" style="font-size:2rem;color:var(--c-primary);">0</span>
+                        </div>
+                        <div class="metric-label" style="text-align:left;margin-top:0.4rem;">Core execution nodes</div>
+                        <div class="status-meter"><div class="status-meter-fill" data-value="100" style="background:var(--c-primary)"></div></div>
+                    </div>
+                    <div class="status-cell">
+                        <div class="status-value-row">
+                            <span class="metric-value" data-count="12" data-suffix="ms" style="font-size:2rem;color:var(--c-secondary);">0</span>
+                        </div>
+                        <div class="metric-label" style="text-align:left;margin-top:0.4rem;">Avg. pipeline latency</div>
+                        <div class="status-meter"><div class="status-meter-fill" data-value="12" style="background:var(--c-secondary)"></div></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ============ PROCESS / PIPELINE DIAGRAM ============ -->
+            <section id="process" class="scroll-offset process-diagram">
+                <div class="section-head reveal">
+                    <span class="eyebrow eyebrow-acid">// Operations Flow</span>
+                    <h2>FROM PROTO-PLAN TO PRODUCTION</h2>
+                    <p>Our systematic roadmap to design, code, and deploy custom software products that sync your organization.</p>
+                </div>
+
+                <div class="reveal process-svg-wrap" aria-hidden="true">
+                    <svg viewBox="0 0 800 140" xmlns="http://www.w3.org/2000/svg">
+                        <line x1="80" y1="70" x2="720" y2="70" stroke="var(--border-color)" stroke-width="3"/>
+                        <line class="flow-line" x1="80" y1="70" x2="720" y2="70" stroke="var(--c-secondary)" stroke-width="3" stroke-linecap="round"/>
+
+                        <g>
+                            <circle class="pulse-node" cx="80" cy="70" r="26" fill="var(--bg-secondary)" stroke="var(--c-secondary)" stroke-width="3"/>
+                            <text x="80" y="76" text-anchor="middle" fill="var(--c-secondary)" font-family="JetBrains Mono, monospace" font-weight="700" font-size="14">01</text>
+                        </g>
+                        <g>
+                            <circle class="pulse-node" cx="293" cy="70" r="26" fill="var(--bg-secondary)" stroke="var(--c-accent)" stroke-width="3" style="animation-delay:0.3s"/>
+                            <text x="293" y="76" text-anchor="middle" fill="var(--c-accent)" font-family="JetBrains Mono, monospace" font-weight="700" font-size="14">02</text>
+                        </g>
+                        <g>
+                            <circle class="pulse-node" cx="507" cy="70" r="26" fill="var(--bg-secondary)" stroke="var(--c-primary)" stroke-width="3" style="animation-delay:0.6s"/>
+                            <text x="507" y="76" text-anchor="middle" fill="var(--c-primary)" font-family="JetBrains Mono, monospace" font-weight="700" font-size="14">03</text>
+                        </g>
+                        <g>
+                            <circle class="pulse-node" cx="720" cy="70" r="26" fill="var(--bg-secondary)" stroke="var(--c-secondary)" stroke-width="3" style="animation-delay:0.9s"/>
+                            <text x="720" y="76" text-anchor="middle" fill="var(--c-secondary)" font-family="JetBrains Mono, monospace" font-weight="700" font-size="14">04</text>
+                        </g>
+                    </svg>
+                </div>
+
+                <div class="process-steps reveal-stagger">
+                    <div class="panel brutal process-step">
+                        <span class="step-num" style="color:var(--c-secondary)">STEP 01</span>
+                        <h4>Intake</h4>
+                        <ul>
+                            <li><i class="fa-solid fa-caret-right" style="color:var(--c-secondary)"></i> Submit operational hurdles</li>
+                            <li><i class="fa-solid fa-caret-right" style="color:var(--c-secondary)"></i> Map features and targets</li>
+                        </ul>
+                    </div>
+                    <div class="panel brutal-pink process-step">
+                        <span class="step-num" style="color:var(--c-accent)">STEP 02</span>
+                        <h4>Prototype</h4>
+                        <ul>
+                            <li><i class="fa-solid fa-caret-right" style="color:var(--c-accent)"></i> Establish core database maps</li>
+                            <li><i class="fa-solid fa-caret-right" style="color:var(--c-accent)"></i> Establish layout visuals</li>
+                        </ul>
+                    </div>
+                    <div class="panel brutal-violet process-step">
+                        <span class="step-num" style="color:var(--c-primary)">STEP 03</span>
+                        <h4>Build</h4>
+                        <ul>
+                            <li><i class="fa-solid fa-caret-right" style="color:var(--c-primary)"></i> Code web and mobile frontends</li>
+                            <li><i class="fa-solid fa-caret-right" style="color:var(--c-primary)"></i> Integrate local AI workflows</li>
+                        </ul>
+                    </div>
+                    <div class="panel brutal process-step">
+                        <span class="step-num" style="color:var(--c-secondary)">STEP 04</span>
+                        <h4>Launch</h4>
+                        <ul>
+                            <li><i class="fa-solid fa-caret-right" style="color:var(--c-secondary)"></i> Deliver clean code handoffs</li>
+                            <li><i class="fa-solid fa-caret-right" style="color:var(--c-secondary)"></i> Provide operations support</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <!-- ============ SERVICES ============ -->
+            <section id="services" class="scroll-offset">
+                <div class="section-head reveal">
+                    <span class="eyebrow eyebrow-pink">// Core Capabilities</span>
+                    <h2>WHAT WE ENGINEER FOR YOUR ORGANIZATION</h2>
+                    <p>We build robust, high-performance systems and workflows tailored to streamline organization logistics.</p>
+                </div>
+
+                <div class="services-grid reveal-stagger">
+                    <!-- Web Development -->
+                    <div class="panel brutal service-card tilt">
+                        <div class="tilt-glare"></div>
+                        <div>
+                            <div class="service-icon" style="background:linear-gradient(135deg, var(--c-secondary), #06b6d4);"><i class="fa-solid fa-code"></i></div>
+                            <h3>Web Development</h3>
+                            <p class="service-desc">Scalable enterprise-grade portals and platforms engineered with robust backends (Django, Node.js) and elegant interfaces (React, Vite).</p>
+                        </div>
+                        <ul class="service-list">
+                            <li><i class="fa-solid fa-server" style="color:var(--c-secondary)"></i> Structured PostgreSQL SQL setups</li>
+                            <li><i class="fa-solid fa-lock" style="color:var(--c-secondary)"></i> Role-based administration modules</li>
+                            <li><i class="fa-solid fa-desktop" style="color:var(--c-secondary)"></i> High-performance responsive pages</li>
+                        </ul>
+                    </div>
+
+                    <!-- App Development -->
+                    <div class="panel brutal-pink service-card tilt">
+                        <div class="tilt-glare"></div>
+                        <div>
+                            <div class="service-icon" style="background:linear-gradient(135deg, var(--c-accent), #f43f5e);"><i class="fa-solid fa-mobile-screen-button"></i></div>
+                            <h3>App Development</h3>
+                            <p class="service-desc">Interactive mobile applications developed for iOS and Android layouts. Crafted to offer fluid transitions, tactile feedback, and offline states.</p>
+                        </div>
+                        <ul class="service-list">
+                            <li><i class="fa-solid fa-mobile" style="color:var(--c-accent)"></i> Cross-platform compilation</li>
+                            <li><i class="fa-solid fa-database" style="color:var(--c-accent)"></i> Local client synchronization keys</li>
+                            <li><i class="fa-solid fa-sparkles" style="color:var(--c-accent)"></i> Modern fluid UI design rules</li>
+                        </ul>
+                    </div>
+
+                    <!-- AI Intelligence -->
+                    <div class="panel brutal-violet service-card tilt">
+                        <div class="tilt-glare"></div>
+                        <div>
+                            <div class="service-icon" style="background:linear-gradient(135deg, var(--c-primary), #a855f7);"><i class="fa-solid fa-brain"></i></div>
+                            <h3>AI Intelligence</h3>
+                            <p class="service-desc">Cognitive LLM pipelines and automated agents designed to manage business workflows, index complex files, and handle support routines.</p>
+                        </div>
+                        <ul class="service-list">
+                            <li><i class="fa-solid fa-microchip" style="color:var(--c-primary)"></i> Autonomous background automation</li>
+                            <li><i class="fa-solid fa-file-pdf" style="color:var(--c-primary)"></i> PDF payload indexing engines</li>
+                            <li><i class="fa-solid fa-robot" style="color:var(--c-primary)"></i> Intelligent Gemini API connections</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <!-- ============ PORTFOLIO ============ -->
+            <section id="portfolio" class="scroll-offset">
+                <div class="section-head reveal">
+                    <span class="eyebrow eyebrow-acid">// Interactive Proofs</span>
+                    <h2>OUR DEPLOYED ARCHIVE</h2>
+                    <p>Live sandbox models, not static screenshots. Test the underlying code directly inside these components.</p>
+                </div>
+
+                <div class="portfolio-grid reveal-stagger">
+
+                    <!-- Project 1 -->
+                    <div class="panel brutal portfolio-card tilt">
+                        <div class="tilt-glare"></div>
+                        <div class="portfolio-media">
+                            <div class="mini-window">
+                                <div style="display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid var(--border-color);padding-bottom:0.5rem;margin-bottom:0.75rem;">
+                                    <span style="color:var(--text-primary);font-weight:700;"><i class="fa-solid fa-globe" style="color:var(--c-secondary);margin-right:0.5rem;"></i>CortexFlow Web</span>
+                                    <span class="status-pill">ONLINE</span>
+                                </div>
+                                <div style="display:flex;flex-direction:column;gap:0.5rem;font-size:10px;color:var(--text-secondary);">
+                                    <span>&gt; rendering canvas system...</span>
+                                    <span>&gt; design aesthetic: premium ✓</span>
+                                    <span style="color:var(--c-secondary)">&gt; node status: CONNECTED</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="portfolio-body">
+                            <div>
+                                <span class="portfolio-tag" style="color:var(--c-secondary)">// BRAND PORTAL SYSTEM</span>
+                                <h3>CortexFlow AI Portal</h3>
+                                <ul class="portfolio-list">
+                                    <li><i class="fa-solid fa-caret-right" style="color:var(--c-secondary)"></i> Interactive canvas neural background</li>
+                                    <li><i class="fa-solid fa-caret-right" style="color:var(--c-secondary)"></i> Dynamically persisting theme settings</li>
+                                    <li><i class="fa-solid fa-caret-right" style="color:var(--c-secondary)"></i> Premium fluid responsive transitions</li>
+                                </ul>
+                            </div>
+                            <div class="portfolio-footer">
+                                <span style="color:var(--text-muted);font-family:'JetBrains Mono',monospace;">Stack: HTML5, CSS Variables, JS</span>
+                                <span style="color:var(--c-secondary);font-weight:700;cursor:pointer;font-family:'JetBrains Mono',monospace;" onclick="scrollToSection('home')">Back to top &rarr;</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Project 2 -->
+                    <div id="booking-widget" class="panel brutal-pink portfolio-card tilt">
+                        <div class="tilt-glare"></div>
+                        <div class="portfolio-media">
+                            <div style="display:flex;align-items:center;justify-content:space-between;">
+                                <span style="font-size:10px;color:var(--c-accent);font-weight:700;font-family:'JetBrains Mono',monospace;">// INTERACTIVE SIMULATION</span>
+                                <span class="status-pill">LIVE SQL DB</span>
+                            </div>
+                            <div class="mini-window">
+                                <div style="display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid var(--border-color);padding-bottom:0.5rem;margin-bottom:0.5rem;">
+                                    <span style="color:var(--text-primary);font-weight:700;"><i class="fa-solid fa-dumbbell" style="color:var(--c-accent);margin-right:0.5rem;"></i>Gym Booking CRM</span>
+                                    <span style="font-size:9px;color:var(--text-muted);">Console logs</span>
+                                </div>
+                                <div id="booking-sandbox-logs" class="sandbox-log-box">
+                                    <p style="color:var(--text-muted)">// Ready to process queries...</p>
+                                </div>
+                            </div>
+                            <div class="sandbox-controls">
+                                <button onclick="runLocalBooking('John Doe', 'Strength Training')" class="mini-btn">+ Add John</button>
+                                <button onclick="runLocalBooking('Sarah Miller', 'Yoga Flow')" class="mini-btn">+ Add Sarah</button>
+                                <button onclick="clearLocalBookingLogs()" class="mini-btn" style="border-color:transparent;">Reset Logs</button>
+                            </div>
+                        </div>
+                        <div class="portfolio-body">
+                            <div>
+                                <span class="portfolio-tag" style="color:var(--c-accent)">// APP WORKFLOW ENGINE</span>
+                                <h3>Elite Fit Member CRM</h3>
+                                <ul class="portfolio-list">
+                                    <li><i class="fa-solid fa-caret-right" style="color:var(--c-accent)"></i> Automated workflow logging script</li>
+                                    <li><i class="fa-solid fa-caret-right" style="color:var(--c-accent)"></i> Local client synchronization simulator</li>
+                                    <li><i class="fa-solid fa-caret-right" style="color:var(--c-accent)"></i> Automated SMS alerts validation hooks</li>
+                                </ul>
+                            </div>
+                            <div class="portfolio-footer">
+                                <span style="color:var(--text-muted);font-family:'JetBrains Mono',monospace;">Stack: React Native mock, local DB</span>
+                                <span style="color:var(--c-accent);font-weight:700;cursor:pointer;font-family:'JetBrains Mono',monospace;" onclick="scrollToSection('contact')">Connect now &rarr;</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Project 3 -->
+                    <div id="screener-widget" class="panel brutal-violet portfolio-card tilt">
+                        <div class="tilt-glare"></div>
+                        <div class="portfolio-media">
+                            <div style="display:flex;align-items:center;justify-content:space-between;">
+                                <span style="font-size:10px;color:var(--c-primary);font-weight:700;font-family:'JetBrains Mono',monospace;">// INTERACTIVE SIMULATION</span>
+                                <span class="status-pill">GEMINI ACTIVE</span>
+                            </div>
+                            <div class="mini-window">
+                                <div style="display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid var(--border-color);padding-bottom:0.5rem;margin-bottom:0.5rem;">
+                                    <span style="color:var(--text-primary);font-weight:700;"><i class="fa-solid fa-brain" style="color:var(--c-primary);margin-right:0.5rem;"></i>AI Radar Intake</span>
+                                    <span style="font-size:9px;color:var(--text-muted);">JSON payload</span>
+                                </div>
+                                <div id="screener-sandbox-output" class="sandbox-log-box">
+                                    <p style="color:var(--text-muted)">Select a document payload to trigger AI pipeline...</p>
+                                </div>
+                            </div>
+                            <div class="sandbox-controls">
+                                <button onclick="runScreenerDiagnostic('Resume_FullStack.pdf', 'Django, React', 96)" class="mini-btn">FullStack Resume</button>
+                                <button onclick="runScreenerDiagnostic('Resume_Sales.pdf', 'Cold Calling', 42)" class="mini-btn">Sales Resume</button>
+                            </div>
+                        </div>
+                        <div class="portfolio-body">
+                            <div>
+                                <span class="portfolio-tag" style="color:var(--c-primary)">// AI WORKFLOW INTELLIGENCE</span>
+                                <h3>AI Candidate Filter</h3>
+                                <ul class="portfolio-list">
+                                    <li><i class="fa-solid fa-caret-right" style="color:var(--c-primary)"></i> Parses incoming resumes via Gemini API</li>
+                                    <li><i class="fa-solid fa-caret-right" style="color:var(--c-primary)"></i> Automates scoring and filters applicants</li>
+                                    <li><i class="fa-solid fa-caret-right" style="color:var(--c-primary)"></i> Eliminates hours of manual administrative logs</li>
+                                </ul>
+                            </div>
+                            <div class="portfolio-footer">
+                                <span style="color:var(--text-muted);font-family:'JetBrains Mono',monospace;">Stack: Node, Gemini SDK, File-parser</span>
+                                <span style="color:var(--c-primary);font-weight:700;cursor:pointer;font-family:'JetBrains Mono',monospace;" onclick="scrollToSection('contact')">Connect now &rarr;</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="reveal" style="text-align:center;">
+                    <button onclick="scrollToSection('contact')" class="btn-cta" style="padding:1rem 2.25rem;display:inline-flex;align-items:center;gap:0.75rem;">
+                        INTERESTED IN A SYSTEM? CONNECT WITH US <i class="fa-solid fa-gears animate-spin-slow"></i>
+                    </button>
+                </div>
+            </section>
+
+            <!-- ============ TEAM ============ -->
+            <section id="team" class="scroll-offset">
+                <div class="section-head reveal">
+                    <span class="eyebrow eyebrow-violet">// Team Roster</span>
+                    <h2>MEET THE ENGINEERING COMMAND</h2>
+                    <p>An elite systems design framework, led entirely by Shubham Tiwari, executing custom codebases, responsive layouts, and AI integrations.</p>
+                </div>
+
+                <div class="team-grid reveal-stagger">
+                    <div onclick="selectTeammate('st')" class="panel brutal team-card tilt">
+                        <div class="tilt-glare"></div>
+                        <div class="team-avatar">
+                            <span class="initials" style="color:var(--c-secondary)">ST</span>
+                            <div class="rpg-overlay"><span>ROLE: FOUNDER</span><span style="color:var(--c-secondary)">LVL: 99</span></div>
+                        </div>
+                        <h3>Shubham Tiwari</h3>
+                        <div class="team-role">CEO / Cloud Systems Architect</div>
+                        <ul class="team-bullets">
+                            <li><i class="fa-solid fa-caret-right" style="color:var(--c-secondary)"></i> Directs systems engineering strategy</li>
+                            <li><i class="fa-solid fa-caret-right" style="color:var(--c-secondary)"></i> Maps complex database infrastructures</li>
+                        </ul>
+                        <div class="skill-bar-wrap">
+                            <div class="skill-bar-label"><span>SYSTEMS ARCHITECT</span><span style="color:var(--c-secondary)">92%</span></div>
+                            <div class="skill-bar-track"><div class="skill-bar-fill" data-value="92" style="background:var(--c-secondary)"></div></div>
+                        </div>
+                    </div>
+
+                    <div onclick="selectTeammate('kk')" class="panel brutal-pink team-card tilt">
+                        <div class="tilt-glare"></div>
+                        <div class="team-avatar">
+                            <span class="initials" style="color:var(--c-accent)">ST</span>
+                            <div class="rpg-overlay"><span>ROLE: CTO</span><span style="color:var(--c-accent)">LVL: 98</span></div>
+                        </div>
+                        <h3>Shubham Tiwari</h3>
+                        <div class="team-role">CTO / Full-Stack & App Lead</div>
+                        <ul class="team-bullets">
+                            <li><i class="fa-solid fa-caret-right" style="color:var(--c-accent)"></i> Outlines interactive mobile applications</li>
+                            <li><i class="fa-solid fa-caret-right" style="color:var(--c-accent)"></i> Writes clean React & Node packages</li>
+                        </ul>
+                        <div class="skill-bar-wrap">
+                            <div class="skill-bar-label"><span>APP & FRONTEND BUILD</span><span style="color:var(--c-accent)">95%</span></div>
+                            <div class="skill-bar-track"><div class="skill-bar-fill" data-value="95" style="background:var(--c-accent)"></div></div>
+                        </div>
+                    </div>
+
+                    <div onclick="selectTeammate('sk')" class="panel brutal team-card tilt">
+                        <div class="tilt-glare"></div>
+                        <div class="team-avatar">
+                            <span class="initials" style="color:var(--c-secondary)">ST</span>
+                            <div class="rpg-overlay"><span>ROLE: AI ENGINE</span><span style="color:var(--c-secondary)">LVL: 97</span></div>
+                        </div>
+                        <h3>Shubham Tiwari</h3>
+                        <div class="team-role">AI Intelligence Director</div>
+                        <ul class="team-bullets">
+                            <li><i class="fa-solid fa-caret-right" style="color:var(--c-secondary)"></i> Connects neural automation structures</li>
+                            <li><i class="fa-solid fa-caret-right" style="color:var(--c-secondary)"></i> Optimizes conversational API response</li>
+                        </ul>
+                        <div class="skill-bar-wrap">
+                            <div class="skill-bar-label"><span>AI WORKFLOW ARCH</span><span style="color:var(--c-secondary)">94%</span></div>
+                            <div class="skill-bar-track"><div class="skill-bar-fill" data-value="94" style="background:var(--c-secondary)"></div></div>
+                        </div>
+                    </div>
+
+                    <div onclick="selectTeammate('ts')" class="panel brutal-violet team-card tilt">
+                        <div class="tilt-glare"></div>
+                        <div class="team-avatar">
+                            <span class="initials" style="color:var(--c-primary)">ST</span>
+                            <div class="rpg-overlay"><span>ROLE: DEVOPS</span><span style="color:var(--c-primary)">LVL: 99</span></div>
+                        </div>
+                        <h3>Shubham Tiwari</h3>
+                        <div class="team-role">DevOps & Cloud Engineer</div>
+                        <ul class="team-bullets">
+                            <li><i class="fa-solid fa-caret-right" style="color:var(--c-primary)"></i> Schedules background cleanups & databases</li>
+                            <li><i class="fa-solid fa-caret-right" style="color:var(--c-primary)"></i> Assures secure postgres migrations</li>
+                        </ul>
+                        <div class="skill-bar-wrap">
+                            <div class="skill-bar-label"><span>CLOUD AUTOMATION</span><span style="color:var(--c-primary)">90%</span></div>
+                            <div class="skill-bar-track"><div class="skill-bar-fill" data-value="90" style="background:var(--c-primary)"></div></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Selected teammate detail box -->
+                <div id="crew-details-box" class="panel brutal crew-details">
+                    <div class="crew-details-head">
+                        <span id="crew-badge" class="crew-badge">NODE METRICS // ACTIVE</span>
+                        <button onclick="closeCrewDetails()" style="color:var(--text-muted);background:none;border:none;font-family:'JetBrains Mono',monospace;cursor:pointer;">[close]</button>
+                    </div>
+                    <div class="crew-details-body">
+                        <div>
+                            <h4 id="crew-detail-name">Shubham Tiwari</h4>
+                            <p style="color:var(--c-secondary);font-family:'JetBrains Mono',monospace;font-size:0.85rem;margin-top:0.25rem;text-transform:uppercase;" id="crew-detail-title">CEO / Django Architect</p>
+                            <ul id="crew-detail-bullets" class="crew-bullets">
+                                <li><i class="fa-solid fa-caret-right" style="color:var(--c-secondary)"></i> Directs systems engineering and custom cloud setups</li>
+                            </ul>
+                        </div>
+                        <div class="crew-stats">
+                            <div class="crew-stats-row"><span>SPECIAL SYSTEM:</span><span id="crew-detail-weapon" style="color:var(--text-primary)">Django Core Engine</span></div>
+                            <div class="crew-stats-row"><span>ENGINEERING LEVEL:</span><span style="color:var(--c-secondary)">LEVEL 99</span></div>
+                            <div class="crew-stats-row"><span>SYSTEM PERFORMANCE:</span><span style="color:var(--text-primary)">99.9% SECURE UPTIME</span></div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- ============ CONTACT ============ -->
+            <section id="contact" class="scroll-offset">
+                <div class="contact-grid">
+                    <div class="reveal">
+                        <div class="eyebrow eyebrow-pink"><i class="fa-solid fa-envelope animate-bounce-slow" style="color:var(--c-secondary)"></i> Connect With Our Team</div>
+                        <h2 class="contact-heading">LET'S BUILD<br>YOUR IDEA.</h2>
+
+                        <ul class="contact-bullets">
+                            <li><i class="fa-solid fa-check" style="color:var(--c-secondary)"></i> Direct discussion to scope project logic & ideas</li>
+                            <li><i class="fa-solid fa-check" style="color:var(--c-secondary)"></i> Custom web, mobile, and AI solutions mapped to your needs</li>
+                            <li><i class="fa-solid fa-check" style="color:var(--c-secondary)"></i> Continuous preview links shared as we compile</li>
+                        </ul>
+
+                        <div class="contact-info">
+                            <div class="contact-info-item">
+                                <div class="contact-info-icon" style="color:var(--c-secondary)"><i class="fa-solid fa-envelope"></i></div>
+                                <span style="color:var(--text-primary);font-weight:700;">connect@cortexflow.ai</span>
+                            </div>
+                            <div class="contact-info-item">
+                                <div class="contact-info-icon" style="color:var(--c-accent)"><i class="fa-solid fa-circle-question"></i></div>
+                                <span style="color:var(--text-primary);font-weight:700;">Interested in a service? Drop your request below</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="panel brutal-pink intake-form-panel reveal-scale">
+                        <h3>GET IN TOUCH</h3>
+                        <p style="font-size: 0.82rem; color: var(--text-secondary); margin-bottom: 1.25rem;">Interested in our services? Share your details and let's connect!</p>
+                        <form onsubmit="handleFormSubmission(event)">
+                            <div class="form-group">
+                                <label for="intake-name">Your Name</label>
+                                <input id="intake-name" type="text" placeholder="e.g., John Doe" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="intake-email">Email Address</label>
+                                <input id="intake-email" type="email" placeholder="e.g., john@example.com" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="intake-service">Service of Interest</label>
+                                <select id="intake-service">
+                                    <option>Web Development</option>
+                                    <option>App Development</option>
+                                    <option>AI Automation & Intelligence</option>
+                                    <option>Other / General Inquiry</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="intake-message">Your Message</label>
+                                <textarea id="intake-message" placeholder="Tell us how we can help you..." style="width: 100%; background: var(--bg-primary); border: 1px solid var(--border-color); padding: 0.8rem 1rem; border-radius: 8px; color: var(--text-primary); font-size: 0.9rem; font-family: 'Inter', sans-serif; min-height: 90px; resize: vertical;" required></textarea>
+                            </div>
+                            <button type="submit" class="btn-cta form-submit">SEND MESSAGE &rarr;</button>
+                        </form>
+
+                        <div id="form-alert" class="form-alert">
+                            <span id="alert-msg"></span>
+                            <button onclick="closeFormAlert()">[ok]</button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+        </main>
+
+        <!-- ============ FOOTER ============ -->
+        <footer class="site-footer">
+            <div class="footer-brand">
+                <span>CortexFlow<span style="color:var(--c-secondary)">.AI</span></span>
+                <span class="footer-note">// SYSTEM ARCHITECTURE V2.0</span>
+            </div>
+            <p class="footer-copy">&copy; 2026 CortexFlow AI Engineering Group. All rights reserved.</p>
+        </footer>
+    </div>
+
+    <!-- Brand Guide panel removed -->
+
+    <script src="script.js"></script>
+</body>
+</html>
