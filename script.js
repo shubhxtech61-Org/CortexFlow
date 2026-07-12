@@ -134,6 +134,7 @@ function runScreenerDiagnostic(fileName, criteria, score) {
 }
 
 /* ---------- Team profiles ---------- */
+/* ---------- Team profiles ---------- */
 const teammateBios = {
     st: {
         name: 'Shubham Tiwari',
@@ -147,7 +148,7 @@ const teammateBios = {
         class: 'FOUNDER'
     },
     kk: {
-        name: 'Shubham Tiwari',
+        name: 'Shivanshu Raj',
         title: 'CTO / Full-Stack & App Engineer',
         bullets: [
             'Engineers responsive, modern web interfaces in React and HTML5',
@@ -158,7 +159,7 @@ const teammateBios = {
         class: 'DEVELOPER'
     },
     sk: {
-        name: 'Shubham Tiwari',
+        name: 'TeamMember3',
         title: 'AI Intelligence Director',
         bullets: [
             'Designs autonomous agent pipelines for workflow automation',
@@ -169,7 +170,7 @@ const teammateBios = {
         class: 'AI ARCHITECT'
     },
     ts: {
-        name: 'Shubham Tiwari',
+        name: 'TeamMember4',
         title: 'Infrastructure & DevOps Lead',
         bullets: [
             'Deploys PostgreSQL instances and models at scale',
